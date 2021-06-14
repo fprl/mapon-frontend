@@ -1,0 +1,3 @@
+# # https://marketplace.visualstudio.com/items?itemName=humao.rest-client#environment-variables
+
+GET https://{{host}}/api/{{version}}/
