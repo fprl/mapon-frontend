@@ -39,9 +39,9 @@ const GlobalStyles = createGlobalStyle`
   }
 
   html {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: "MuseoSans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
 	  font-size: 16px;
-	  font-weight: 400;
+	  font-weight: 500;
 	  color: var(--color-text);
   }
 
