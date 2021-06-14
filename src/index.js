@@ -2,11 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import App from './components/App';
-import Reset from './components/styled/Reset'
-import GlobalStyles from './components/styled/GlobalStyles'
+import Reset from './styles/Reset'
+import GlobalStyles from './styles/GlobalStyles'
+import Fonts from './styles/Fonts'
 
 ReactDOM.render(
   <>
+    <Fonts />
     <Reset />
     <GlobalStyles />
     <App />

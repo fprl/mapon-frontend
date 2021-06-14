@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
 const App = () => {
-
-  return <Title>Mapon | Technical Task</Title>
+  return <Title>Route report</Title>
 }
 
 export default App
