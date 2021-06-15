@@ -2,27 +2,21 @@ import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyles = createGlobalStyle`
   html {
-    --color-text: rgb(55, 53, 47);
+    --color-text: #384045;
     --color-text-inverse: white;
-    --color-background: white;
-    --color-gray-25: hsl(6, 0%, 95%);
-    --color-gray: hsl(6, 0%, 80%);
-    --color-border: hsl(6, 0%, 92%);
+
+    --color-bg: white;
+    --color-bg-gray: #F4F4F4;
+
+    --color-border: #DCDEE0;
     --color-shadow: hsl(6, 0%, 92%);
     --color-hover: hsl(6, 0%, 92%);
-    --color-hover-75: hsl(6, 0%, 75%);
-    --color-hover-85: hsl(6, 0%, 85%);
-    --color-primary: #2F0079;
+    
+    --color-primary: #98CA02;
     --color-status-success: #69CC8B;
     --color-status-error: #C00000;
-    --color-status-active: rgb(46, 170, 220);
-  
-    --height-card-frame: 10rem;
-    --width-container: 90%;
-    --width-menu: 15rem;
-    --max-width-menu: 40rem;
 
-    --text-xs: 0.70rem;
+    --text-xs: 0.85rem;
     --text-sm: 0.90rem;
     --text-base: 1rem;
     --text-lg: 1.125rem;
@@ -36,9 +30,28 @@ const GlobalStyles = createGlobalStyle`
     --spacing-s: 1rem;
     --spacing-m: 1.5rem;
     --spacing-l: 2rem;
+
+    // tablet
+    @media (min-width: 768px) {
+      --font-size: 1rem;
+    }
+
+    // horizontal tablet
+    @media (min-width: 1024px) {
+      --font-size: 0.7rem;
+    }
+
+    // laptop
+    @media (min-width: 1200px) {
+    }
+
+    // desktop
+    @media (min-width: 1600px) {
+    }
+  }
   }
 
-  html {
+  body {
     font-family: "MuseoSans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
 	  font-size: 16px;
 	  font-weight: 500;
