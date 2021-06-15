@@ -20,8 +20,7 @@ const Container = styled.main`
   flex-direction: column;
   align-items: center;
 
-  padding-top: 1.6rem;
-  padding-inline: 2rem;
+  padding: 1.6rem 2rem;
 
   gap: 1.6rem;
   min-height: 100vh;
