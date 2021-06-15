@@ -4,15 +4,15 @@ import styled from 'styled-components'
 import { Input, Select, Option, Label } from './elements'
 import { Grid, Flex } from '../styled/lib'
 
-const RouteForm = () => {
+const RouteSearch = () => {
   return (
     <Form>
       <Vehicule>
         <Label htmlFor="vehicle" required>
           Vehicle number
         </Label>
-        <Select name="vehicle" id="vehicle">
-          <Option value="" selected disabled hidden>Select vehicle</Option>
+        <Select name="vehicle" id="vehicle" value="Select vehicle">
+          <Option disabled hidden>Select vehicle</Option>
           <Option value="je" children="je" />
           <Option value="jo" children="jo" />
           <Option value="ji" children="ji" />
@@ -40,7 +40,7 @@ const RouteForm = () => {
   )
 }
 
-export default RouteForm
+export default RouteSearch
 
 const Form = styled.form`
   display: flex;
