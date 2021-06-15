@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
-import RouteForm from '../forms/RouteForm'
-import Button from '../button/Button'
+import { Title, Button } from '../styled/lib'
+import RouteSearch from '../forms/RouteSearch'
+import RouteInfo from '../routeInfo/RouteInfo'
 
 const RouteReport = () => {
   return (
     <Container>
       <Title>Route report</Title>
-      <RouteForm />
+      <RouteSearch />
+      <RouteInfo />
       <Wrapper>
         <Button>GENERATE</Button>
       </Wrapper>
@@ -28,15 +30,6 @@ const Container = styled.section`
 
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08), 0px 2px 14px rgba(0, 0, 0, 0.06);
   border-radius: 3px;
-`
-
-const Title = styled.h1`
-  font-size: var(--text-2xl);
-  font-weight: 400;
-  line-height: 1.2;
-
-  padding: 2.5rem 1.6rem;
-  padding-bottom: 0;
 `
 
 const Wrapper = styled.div`
