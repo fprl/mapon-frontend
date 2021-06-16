@@ -1,14 +1,26 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import DatePicker from "react-datepicker"
 
-import { Input, Select, Option, Label } from './elements'
+import { Select, Option, Label, DatePickerStyles } from './elements'
 import { Grid, Flex } from '../styled/lib'
 
 const RouteSearch = () => {
+  const [select, setSelect] = useState('Select vehicle')
+  const [fromDate, setFromDate] = useState(new Date())
+  const [toDate, setToDate] = useState(new Date())
 
   function handleSubmit(e) {
     e.preventDefault()
-    console.log('Hi')
+    const searchQuery = {
+      select,
+      fromDate,
+      toDate,
+    }
+
+    console.log(searchQuery)
+    // call Mapon API
+    // if result call Google Maps API
   }
 
 
@@ -18,7 +30,7 @@ const RouteSearch = () => {
         <Label htmlFor="vehicle" required>
           Vehicle number
         </Label>
-        <Select name="vehicle" id="vehicle" value="Select vehicle">
+        <Select name="vehicle" id="vehicle" value={select} onChange={e => setSelect(e.target.value)}>
           <Option disabled hidden>Select vehicle</Option>
           <Option value="je" children="je" />
           <Option value="jo" children="jo" />
@@ -34,12 +46,27 @@ const RouteSearch = () => {
         <Flex basis={75} gap={1}>
           <Flex dir="column">
             <Label htmlFor="from">From</Label>
-            <Input id="from" name="from" type="date" />
+            <>
+              <DatePickerStyles />
+              <DatePicker
+                id="from"
+                name="from"
+                showPopperArrow={false}
+                selected={fromDate}
+                onChange={date => setFromDate(date)}
+              />
+            </>
           </Flex>
 
           <Flex dir="column">
             <Label htmlFor="to">To</Label>
-            <Input id="to" name="to" type="date" />
+            <DatePicker
+              id="from"
+              name="from"
+              showPopperArrow={false}
+              selected={toDate}
+              onChange={date => setToDate(date)}
+            />
           </Flex>
         </Flex>
       </Period>
