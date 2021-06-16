@@ -12,7 +12,7 @@ const RouteReport = () => {
       <RouteSearch />
       <RouteInfo />
       <Wrapper>
-        <Button>GENERATE</Button>
+        <Button type="submit" form="route-search">GENERATE</Button>
       </Wrapper>
     </Container>
   )

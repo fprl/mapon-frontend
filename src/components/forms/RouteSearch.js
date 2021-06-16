@@ -5,8 +5,15 @@ import { Input, Select, Option, Label } from './elements'
 import { Grid, Flex } from '../styled/lib'
 
 const RouteSearch = () => {
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    console.log('Hi')
+  }
+
+
   return (
-    <Form>
+    <Form id="route-search" onSubmit={handleSubmit}>
       <Vehicule>
         <Label htmlFor="vehicle" required>
           Vehicle number
@@ -63,6 +70,8 @@ const Vehicule = styled(Grid)`
   @media (min-width: 768px) {
     grid-template-columns: 1fr 3fr;
     grid-template-rows: 1fr;
+
+    align-items: center;
     row-gap: 0rem;
   }
 
