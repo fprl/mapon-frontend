@@ -1,0 +1,9 @@
+# https://marketplace.visualstudio.com/items?itemName=humao.rest-client#environment-variables
+
+GET https://{{host}}/api/{{version}}/route/list.json?key={{maponApi}}&unit_id=71507&from=2021-06-01T00:00:00Z&till=2021-06-16T23:59:59Z
+
+###
+GET https://{{host}}/api/{{version}}/route/list.json?key={{maponApi}}&unit_id=71507&from=2021-06-01T00:00:00Z&till=2021-06-02T23:59:59Z&include[]=decoded_route
+
+###
+GET https://{{host}}/api/{{version}}/route/list.json?key={{maponApi}}&unit_id=71507&from=2021-06-01T00:00:00Z&till=2021-06-02T23:59:59Z&include=polyline
