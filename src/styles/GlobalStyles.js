@@ -3,6 +3,7 @@ import { createGlobalStyle } from 'styled-components'
 const GlobalStyles = createGlobalStyle`
   html {
     --color-text: #384045;
+    --color-text-details: #797F82;
     --color-text-inverse: white;
 
     --color-bg: white;
@@ -16,8 +17,8 @@ const GlobalStyles = createGlobalStyle`
     --color-status-success: #69CC8B;
     --color-status-error: #C00000;
 
-    --text-xs: 0.85rem;
-    --text-sm: 0.90rem;
+    --text-xs: 0.75rem;
+    --text-sm: 0.85rem;
     --text-base: 1rem;
     --text-lg: 1.125rem;
     --text-xl: 1.25rem;
