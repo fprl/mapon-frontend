@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 import Logo from './logo/Logo'
 import RouteReport from './routeReport/RouteReport'
 
+const queryClient = new QueryClient()
+
 const App = () => {
   return (
-    <Container>
-      <Logo />
-      <RouteReport />
-    </Container>
+    <QueryClientProvider client={queryClient}>
+      <Container>
+        <Logo />
+        <RouteReport />
+      </Container>
+    </QueryClientProvider>
   )
 }
 

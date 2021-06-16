@@ -1,28 +1,37 @@
 import React, { useState, useEffect } from 'react'
+import { useQuery, useQueryClient } from 'react-query'
 import styled from 'styled-components'
-import DatePicker from "react-datepicker"
 
+import DatePicker from 'react-datepicker'
 import { Select, Option, Label, DatePickerStyles } from './elements'
 import { Grid, Flex } from '../styled/lib'
 
+import { maponApi } from '../../services/maponApi'
+
 const RouteSearch = () => {
-  const [select, setSelect] = useState('Select vehicle')
+  const [selectedVehicle, setSelectedVehicle] = useState('Select vehicle')
   const [fromDate, setFromDate] = useState(new Date())
   const [toDate, setToDate] = useState(new Date())
 
-  function handleSubmit(e) {
+  const { data: vehicles, status } = useQuery('vehicles', maponApi.getVehicles)
+
+  async function handleSubmit(e) {
     e.preventDefault()
-    const searchQuery = {
-      select,
-      fromDate,
-      toDate,
+    if (selectedVehicle === 'Select vehicle') {
+      return
     }
 
-    console.log(searchQuery)
-    // call Mapon API
-    // if result call Google Maps API
-  }
+    const unitId = vehicles.data.units.filter(
+      vehicle => vehicle.number === selectedVehicle
+    )[0].unit_id
+    const fromDateUTC = fromDate.toISOString().slice(0, 10) + 'T00:00:00Z' // "YYYY-MM-DDT04:00:00.000Z"
+    const toDateUTC = toDate.toISOString().slice(0, 10) + 'T23:59:59Z'
+    const searchQuery = { unitId, fromDateUTC, toDateUTC }
 
+    // call Mapon API
+    const vehicleRoute = await maponApi.getVehicleRoute(searchQuery)
+    vehicleRoute && console.log(vehicleRoute.data.units)
+  }
 
   return (
     <Form id="route-search" onSubmit={handleSubmit}>
@@ -30,11 +39,15 @@ const RouteSearch = () => {
         <Label htmlFor="vehicle" required>
           Vehicle number
         </Label>
-        <Select name="vehicle" id="vehicle" value={select} onChange={e => setSelect(e.target.value)}>
+        <Select name="vehicle" id="vehicle" value={selectedVehicle} onChange={e => setSelectedVehicle(e.target.value)}>
+          {status === 'success' 
+            ? vehicles.data.units.map(vehicle => (
+            <Option key={vehicle.number} value={vehicle.number}>
+              {vehicle.number}
+            </Option>))
+            : null
+          }
           <Option disabled hidden>Select vehicle</Option>
-          <Option value="je" children="je" />
-          <Option value="jo" children="jo" />
-          <Option value="ji" children="ji" />
         </Select>
       </Vehicule>
 
@@ -51,7 +64,9 @@ const RouteSearch = () => {
               <DatePicker
                 id="from"
                 name="from"
+                dateFormat="dd/MM/yyyy"
                 showPopperArrow={false}
+                calendarStartDay={1}
                 selected={fromDate}
                 onChange={date => setFromDate(date)}
               />
@@ -63,7 +78,9 @@ const RouteSearch = () => {
             <DatePicker
               id="from"
               name="from"
+              dateFormat="dd/MM/yyyy"
               showPopperArrow={false}
+              calendarStartDay={1}
               selected={toDate}
               onChange={date => setToDate(date)}
             />
