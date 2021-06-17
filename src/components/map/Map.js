@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { GoogleMap, Marker, Polyline, useJsApiLoader } from '@react-google-maps/api'
 
 import { mapOptions, polylineOptions, markerOptions } from './options/options'
