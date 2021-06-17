@@ -3,7 +3,7 @@ import { GoogleMap, Marker, Polyline, useJsApiLoader } from '@react-google-maps/
 
 import { mapOptions, polylineOptions, markerOptions } from './options/options'
 
-const Map = ({ vehicleRoute, paths, markers }) => {
+const Map = ({ paths, markers }) => {
   const { isLoaded, loadError } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.REACT_APP_MAPS_API_KEY,
@@ -27,10 +27,6 @@ const Map = ({ vehicleRoute, paths, markers }) => {
   const onUnmount = useCallback(function callback(map) {
     setMap(null)
   }, [])
-
-  if (!vehicleRoute) {
-    return null
-  }
 
   return isLoaded ? (
     <GoogleMap

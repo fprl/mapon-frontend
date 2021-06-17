@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import parseISO from 'date-fns/parseISO'
+import differenceInSeconds from 'date-fns/differenceInSeconds'
 
 import { Flex } from '../styled/lib'
 import Map from '../map/Map'
-import { metersToKm } from './utilities/utilities'
+import { metersToKm, drivenTime } from './utilities/utilities'
 
 const RouteInfo = ({ vehicleRoute }) => {
   const [routeInfo, setRouteInfo] = useState({})
@@ -25,7 +27,17 @@ const RouteInfo = ({ vehicleRoute }) => {
       start: { lat: firstRoute.start.lat, lng: firstRoute.start.lng },
       end: { lat: firstRoute.end.lat, lng: firstRoute.end.lng },
     }
+    const drivedSecs = differenceInSeconds(parseISO(firstRoute.end.time), parseISO(firstRoute.start.time))
 
+    const newRouteInfo = {
+      distanceDriven: metersToKm(firstRoute.distance),
+      timeDriven: drivenTime(drivedSecs),
+      averageSpeed: firstRoute.avg_speed,
+    }
+
+    setRouteInfo(prevRouteInfo => {
+      return { ...prevRouteInfo, ...newRouteInfo}
+    })
     setMarkers(prevMarkers => {
       return { ...prevMarkers, ...newMarkers}
     })
@@ -34,23 +46,27 @@ const RouteInfo = ({ vehicleRoute }) => {
     })
   }, [vehicleRoute])
 
+  if (!vehicleRoute) {
+    return null
+  }
+
   return (
     <Container>
       <Map vehicleRoute={vehicleRoute} paths={paths} markers={markers} />
       <DataContainer dir="column">
         <DataWrapper dir="column">
-          <DataText>128</DataText>
+          <DataText>{routeInfo.distanceDriven}</DataText>
           <DataLegend>Km driven</DataLegend>
         </DataWrapper>
         <Divider />
         <DataWrapper dir="column">
-          <DataText>3h 20m</DataText>
+          <DataText>{routeInfo.timeDriven}</DataText>
           <DataLegend>Driving Time</DataLegend>
         </DataWrapper>
         <Divider />
         <DataWrapper dir="column">
-          <DataText>1h 5m</DataText>
-          <DataLegend>Driving Time</DataLegend>
+          <DataText>{routeInfo.averageSpeed}</DataText>
+          <DataLegend>Avg speed</DataLegend>
         </DataWrapper>
       </DataContainer>
     </Container>
