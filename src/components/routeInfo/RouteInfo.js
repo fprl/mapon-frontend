@@ -2,15 +2,16 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
 import { Flex } from '../styled/lib'
+import Map from '../map/Map'
 
-const RouteInfo = () => {
+const RouteInfo = ({ vehicleRoute }) => {
   const [isVisible, setIsVisible] = useState(true)
 
   return (
     <>
       {isVisible ? (
         <Container>
-          <Map />
+          <Map vehicleRoute={vehicleRoute} />
           <DataContainer dir="column">
             <DataWrapper dir="column">
               <DataText>128</DataText>
@@ -41,11 +42,6 @@ const Container = styled.section`
 
   width: 100%;
   gap: 1.5rem;
-`
-
-const Map = styled.div`
-  height: 12.5rem;
-  background-color: gray;
 `
 
 const DataContainer = styled(Flex)`
