@@ -2,34 +2,29 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
 import { Flex } from '../styled/lib'
+import Map from '../map/Map'
 
-const RouteInfo = () => {
-  const [isVisible, setIsVisible] = useState(true)
-
+const RouteInfo = ({ vehicleRoute }) => {
   return (
-    <>
-      {isVisible ? (
-        <Container>
-          <Map />
-          <DataContainer dir="column">
-            <DataWrapper dir="column">
-              <DataText>128</DataText>
-              <DataLegend>Km driven</DataLegend>
-            </DataWrapper>
-            <Divider />
-            <DataWrapper dir="column">
-              <DataText>3h 20m</DataText>
-              <DataLegend>Driving Time</DataLegend>
-            </DataWrapper>
-            <Divider />
-            <DataWrapper dir="column">
-              <DataText>1h 5m</DataText>
-              <DataLegend>Driving Time</DataLegend>
-            </DataWrapper>
-          </DataContainer>
-        </Container>
-      ) : null}
-    </>
+    <Container>
+      <Map vehicleRoute={vehicleRoute} />
+      <DataContainer dir="column">
+        <DataWrapper dir="column">
+          <DataText>128</DataText>
+          <DataLegend>Km driven</DataLegend>
+        </DataWrapper>
+        <Divider />
+        <DataWrapper dir="column">
+          <DataText>3h 20m</DataText>
+          <DataLegend>Driving Time</DataLegend>
+        </DataWrapper>
+        <Divider />
+        <DataWrapper dir="column">
+          <DataText>1h 5m</DataText>
+          <DataLegend>Driving Time</DataLegend>
+        </DataWrapper>
+      </DataContainer>
+    </Container>
   )
 }
 
@@ -41,11 +36,6 @@ const Container = styled.section`
 
   width: 100%;
   gap: 1.5rem;
-`
-
-const Map = styled.div`
-  height: 12.5rem;
-  background-color: gray;
 `
 
 const DataContainer = styled(Flex)`
@@ -75,7 +65,7 @@ const Divider = styled.div`
     display: block;
     width: 1px;
     height: auto;
-    border-left: 1px solid #DBDBDB;
+    border-left: 1px solid #dbdbdb;
   }
 `
 

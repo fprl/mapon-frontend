@@ -6,11 +6,13 @@ import RouteSearch from '../forms/RouteSearch'
 import RouteInfo from '../routeInfo/RouteInfo'
 
 const RouteReport = () => {
+  const [vehicleRoute, setVehicleRoute] = useState(null)
+
   return (
     <Container>
       <Title>Route report</Title>
-      <RouteSearch />
-      <RouteInfo />
+      <RouteSearch setVehicleRoute={setVehicleRoute} />
+      <RouteInfo vehicleRoute={vehicleRoute} />
       <Wrapper>
         <Button type="submit" form="route-search">GENERATE</Button>
       </Wrapper>
