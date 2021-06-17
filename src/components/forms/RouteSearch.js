@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { useQuery, useQueryClient } from 'react-query'
 import styled from 'styled-components'
-
 import DatePicker from 'react-datepicker'
+
+
 import { Select, Option, Label, DatePickerStyles } from './elements'
 import { Grid, Flex } from '../styled/lib'
 
 import { maponApi } from '../../services/maponApi'
+import { dateToISO } from './utilities/dateToISO'
 
-const RouteSearch = () => {
+const RouteSearch = ({ setVehicleRoute }) => {
   const [selectedVehicle, setSelectedVehicle] = useState('Select vehicle')
   const [fromDate, setFromDate] = useState(new Date())
   const [toDate, setToDate] = useState(new Date())
@@ -24,13 +26,15 @@ const RouteSearch = () => {
     const unitId = vehicles.data.units.filter(
       vehicle => vehicle.number === selectedVehicle
     )[0].unit_id
-    const fromDateUTC = fromDate.toISOString().slice(0, 10) + 'T00:00:00Z' // "YYYY-MM-DDT04:00:00.000Z"
-    const toDateUTC = toDate.toISOString().slice(0, 10) + 'T23:59:59Z'
+    const fromDateUTC = dateToISO(fromDate, 'from')
+    const toDateUTC = dateToISO(toDate, 'to')
     const searchQuery = { unitId, fromDateUTC, toDateUTC }
 
-    // call Mapon API
+    // call Mapon API and get vehicle route
     const vehicleRoute = await maponApi.getVehicleRoute(searchQuery)
-    vehicleRoute && console.log(vehicleRoute.data.units)
+    setVehicleRoute(prevVehicleRoute => {
+      return { ...prevVehicleRoute, ...vehicleRoute }
+    })
   }
 
   return (

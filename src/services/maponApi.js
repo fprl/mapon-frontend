@@ -9,10 +9,8 @@ async function getVehicles() {
 
 async function getVehicleRoute(query) {
   const { unitId, fromDateUTC, toDateUTC } = query
-
-  // const res = await axios.get(`${BASE_URL}/route/list.json?key=${API_KEY}&unit_id=${unitId}&from=${fromDateUTC}&till=${toDateUTC}`)
-  // const res = await axios.get(`${BASE_URL}/route/list.json?key=${API_KEY}&unit_id=${unitId}&from=${fromDateUTC}&till=${toDateUTC}&include[]=decoded_route`)
-  const res = await axios.get(`${BASE_URL}/route/list.json?key=${API_KEY}&unit_id=${unitId}&from=${fromDateUTC}&till=${toDateUTC}&include=polyline`)
+  const res = await axios.get(`${BASE_URL}/route/list.json?key=${API_KEY}&unit_id=${unitId}&from=${fromDateUTC}&till=${toDateUTC}&include[]=decoded_route`)
+  // const res = await axios.get(`${BASE_URL}/route/list.json?key=${API_KEY}&unit_id=${unitId}&from=${fromDateUTC}&till=${toDateUTC}&include=polyline`)
   return res.data
 }
 
