@@ -8,6 +8,7 @@ import Map from '../map/Map'
 import { metersToKm, drivenTime } from './utilities/utilities'
 
 const RouteInfo = ({ vehicleRoute }) => {
+  const [isAValidRoute, setIsAValidRoute] = useState(false)
   const [routeInfo, setRouteInfo] = useState({})
   const [markers, setMarkers] = useState({
     start: { lat: null, lng: null },
@@ -21,6 +22,12 @@ const RouteInfo = ({ vehicleRoute }) => {
     const routes = vehicleRoute.data.units[0].routes.filter(
       route => route.type === 'route'
     )
+
+    if (routes.length === 0 || !routes[0].decoded_route) {
+      setIsAValidRoute(false)
+      return
+    }
+
     const firstRoute = routes[0]
     const newPaths = firstRoute.decoded_route.points
     const newMarkers = {
@@ -38,6 +45,7 @@ const RouteInfo = ({ vehicleRoute }) => {
       averageSpeed: firstRoute.avg_speed,
     }
 
+    setIsAValidRoute(true)
     setRouteInfo(prevRouteInfo => {
       return { ...prevRouteInfo, ...newRouteInfo }
     })
@@ -49,8 +57,17 @@ const RouteInfo = ({ vehicleRoute }) => {
     })
   }, [vehicleRoute])
 
-  if (!vehicleRoute) {
+
+  if (!isAValidRoute && !vehicleRoute) {
     return null
+  }
+
+  if (!isAValidRoute) {
+    return (
+      <Container>
+        <InvalidRoute>Please provide another route date.</InvalidRoute>
+      </Container>
+    )
   }
 
   return (
@@ -126,4 +143,9 @@ const DataLegend = styled.p`
   font-size: var(--text-xs);
   line-height: 1.4;
   color: var(--color-text-details);
+`
+
+const InvalidRoute = styled(DataLegend)`
+  font-size: var(--text-2xl);
+  align-self: center;
 `

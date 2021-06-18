@@ -18,6 +18,7 @@ const Map = ({ paths, markers }) => {
   })
   const [map, setMap] = useState(null)
 
+
   useEffect(() => {
     const timer = setTimeout(() => setShowSpinner(false), 750)
     return () => clearTimeout(timer)
