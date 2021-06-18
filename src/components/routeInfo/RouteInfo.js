@@ -8,10 +8,11 @@ import Map from '../map/Map'
 import { metersToKm, drivenTime } from './utilities/utilities'
 
 const RouteInfo = ({ vehicleRoute }) => {
+  const [isAValidRoute, setIsAValidRoute] = useState(false)
   const [routeInfo, setRouteInfo] = useState({})
   const [markers, setMarkers] = useState({
-    start: {lat: null, lng: null},
-    end: {lat: null, lng: null}
+    start: { lat: null, lng: null },
+    end: { lat: null, lng: null },
   })
   const [paths, setPaths] = useState([])
 
@@ -21,13 +22,22 @@ const RouteInfo = ({ vehicleRoute }) => {
     const routes = vehicleRoute.data.units[0].routes.filter(
       route => route.type === 'route'
     )
+
+    if (routes.length === 0 || !routes[0].decoded_route) {
+      setIsAValidRoute(false)
+      return
+    }
+
     const firstRoute = routes[0]
     const newPaths = firstRoute.decoded_route.points
     const newMarkers = {
       start: { lat: firstRoute.start.lat, lng: firstRoute.start.lng },
       end: { lat: firstRoute.end.lat, lng: firstRoute.end.lng },
     }
-    const drivedSecs = differenceInSeconds(parseISO(firstRoute.end.time), parseISO(firstRoute.start.time))
+    const drivedSecs = differenceInSeconds(
+      parseISO(firstRoute.end.time),
+      parseISO(firstRoute.start.time)
+    )
 
     const newRouteInfo = {
       distanceDriven: metersToKm(firstRoute.distance),
@@ -35,19 +45,29 @@ const RouteInfo = ({ vehicleRoute }) => {
       averageSpeed: firstRoute.avg_speed,
     }
 
+    setIsAValidRoute(true)
     setRouteInfo(prevRouteInfo => {
-      return { ...prevRouteInfo, ...newRouteInfo}
+      return { ...prevRouteInfo, ...newRouteInfo }
     })
     setMarkers(prevMarkers => {
-      return { ...prevMarkers, ...newMarkers}
+      return { ...prevMarkers, ...newMarkers }
     })
     setPaths(prevPaths => {
       return [...newPaths]
     })
   }, [vehicleRoute])
 
-  if (!vehicleRoute) {
+
+  if (!isAValidRoute && !vehicleRoute) {
     return null
+  }
+
+  if (!isAValidRoute) {
+    return (
+      <Container>
+        <InvalidRoute>Please provide another route date.</InvalidRoute>
+      </Container>
+    )
   }
 
   return (
@@ -123,4 +143,9 @@ const DataLegend = styled.p`
   font-size: var(--text-xs);
   line-height: 1.4;
   color: var(--color-text-details);
+`
+
+const InvalidRoute = styled(DataLegend)`
+  font-size: var(--text-2xl);
+  align-self: center;
 `
