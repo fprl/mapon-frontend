@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { useQuery, useQueryClient } from 'react-query'
+import React, { useState } from 'react'
+import { useQuery } from 'react-query'
 import styled from 'styled-components'
 import DatePicker from 'react-datepicker'
 

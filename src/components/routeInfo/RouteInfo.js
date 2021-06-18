@@ -10,8 +10,8 @@ import { metersToKm, drivenTime } from './utilities/utilities'
 const RouteInfo = ({ vehicleRoute }) => {
   const [routeInfo, setRouteInfo] = useState({})
   const [markers, setMarkers] = useState({
-    start: {lat: null, lng: null},
-    end: {lat: null, lng: null}
+    start: { lat: null, lng: null },
+    end: { lat: null, lng: null },
   })
   const [paths, setPaths] = useState([])
 
@@ -27,7 +27,10 @@ const RouteInfo = ({ vehicleRoute }) => {
       start: { lat: firstRoute.start.lat, lng: firstRoute.start.lng },
       end: { lat: firstRoute.end.lat, lng: firstRoute.end.lng },
     }
-    const drivedSecs = differenceInSeconds(parseISO(firstRoute.end.time), parseISO(firstRoute.start.time))
+    const drivedSecs = differenceInSeconds(
+      parseISO(firstRoute.end.time),
+      parseISO(firstRoute.start.time)
+    )
 
     const newRouteInfo = {
       distanceDriven: metersToKm(firstRoute.distance),
@@ -36,10 +39,10 @@ const RouteInfo = ({ vehicleRoute }) => {
     }
 
     setRouteInfo(prevRouteInfo => {
-      return { ...prevRouteInfo, ...newRouteInfo}
+      return { ...prevRouteInfo, ...newRouteInfo }
     })
     setMarkers(prevMarkers => {
-      return { ...prevMarkers, ...newMarkers}
+      return { ...prevMarkers, ...newMarkers }
     })
     setPaths(prevPaths => {
       return [...newPaths]
