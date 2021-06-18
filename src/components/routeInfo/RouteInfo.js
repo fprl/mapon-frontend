@@ -146,6 +146,18 @@ const DataLegend = styled.p`
 `
 
 const InvalidRoute = styled(DataLegend)`
-  font-size: var(--text-2xl);
+  font-size: var(--text-base);
   align-self: center;
+
+  padding: 0.5rem;
+  text-align: center;
+
+  @media (min-width: 768px) {
+    font-size: var(--text-lg);
+    padding: 0;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: var(--text-2xl);
+  }
 `

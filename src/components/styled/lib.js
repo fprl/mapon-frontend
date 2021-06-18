@@ -39,4 +39,10 @@ export const Button = styled.button`
 
   text-align: center;
   cursor: pointer;
+
+  transition: all 0.2s;
+
+  :hover {
+    background-color: var(--color-primary-hover);
+  }
 `

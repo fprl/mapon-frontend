@@ -11,7 +11,7 @@ const GlobalStyles = createGlobalStyle`
 
     --color-border: #DCDEE0;
     --color-shadow: hsl(6, 0%, 92%);
-    --color-hover: hsl(6, 0%, 92%);
+    --color-primary-hover: #79a102;
     
     --color-primary: #98CA02;
     --color-status-success: #69CC8B;

@@ -122,9 +122,6 @@ const Vehicule = styled(Grid)`
     align-items: center;
     row-gap: 0rem;
   }
-
-  @media (min-width: 1024px) {
-  }
 `
 
 const Period = styled(Flex)`
