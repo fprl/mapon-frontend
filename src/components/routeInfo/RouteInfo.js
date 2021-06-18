@@ -28,6 +28,7 @@ const RouteInfo = ({ vehicleRoute }) => {
       return
     }
 
+    // work with the first route because of UI
     const firstRoute = routes[0]
     const newPaths = firstRoute.decoded_route.points
     const newMarkers = {
