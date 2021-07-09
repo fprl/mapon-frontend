@@ -7,7 +7,7 @@
   <p align="center">
     <a href="https://mapon-frontend.vercel.app/">Live Demo</a>
     ·
-    <a href="https://www.figma.com/file/TBfw8jRll5bId68KXeqXL6/front-end-task?node-id=0%3A2">Design</a>
+    <a href="https://www.figma.com/file/TBfw8jRll5bId68KXeqXL6/front-end-task?node-id=0%3A2">Figma</a>
   </p>
 </p>
 
