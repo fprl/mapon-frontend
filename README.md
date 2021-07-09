@@ -15,10 +15,10 @@
 <br />
 
 <!-- ABOUT THE PROJECT -->
-### About the assignment
-
 ![product-screenshot]
 
+
+### About the assignment
 Using the Mapon API and the Google Maps API, the map must show the route taken by the car.
 The user must be able to select a car from the list of available cars and the time period (days).
 After confirming the selected car and period, a map with the route must be displayed.
